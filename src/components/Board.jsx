@@ -1,27 +1,28 @@
+// Board.js
 import { useState, useEffect } from 'react';
 import Card from './Card';
-import {v4} from 'uuid';
+import { v4 } from 'uuid';
 
 function Board() {
   const [items, setItems] = useState(
     [
-      { value: 1, img: './public/assets/fruits/apple.png', stat: '' },
-      { value: 1, img: './public/assets/fruits/apple.png', stat: '' },
-      { value: 2, img: './public/assets/fruits/banana.png', stat: '' },
-      { value: 2, img: './public/assets/fruits/banana.png', stat: '' },
-      { value: 3, img: './public/assets/fruits/blueberry.png', stat: '' },
-      { value: 3, img: './public/assets/fruits/blueberry.png', stat: '' },
-      { value: 4, img: './public/assets/fruits/cherry.png', stat: '' },
-      { value: 4, img: './public/assets/fruits/cherry.png', stat: '' },
-      { value: 5, img: './public/assets/fruits/orange.png', stat: '' },
-      { value: 5, img: './public/assets/fruits/orange.png', stat: '' },
-      { value: 6, img: './public/assets/fruits/orange2.png', stat: '' },
-      { value: 6, img: './public/assets/fruits/orange2.png', stat: '' },
-      { value: 7, img: './public/assets/fruits/pineapple.png', stat: '' },
-      { value: 7, img: './public/assets/fruits/pineapple.png', stat: '' },
-      { value: 8, img: './public/assets/fruits/pomegranate.png', stat: '' },
-      { value: 8, img: './public/assets/fruits/pomegranate.png', stat: '' },
-    ].sort(() => Math.random() - 0.5) 
+      { value: 1, img: 'assets/fruits/apple.png', stat: '' },
+      { value: 1, img: 'assets/fruits/apple.png', stat: '' },
+      { value: 2, img: 'assets/fruits/banana.png', stat: '' },
+      { value: 2, img: 'assets/fruits/banana.png', stat: '' },
+      { value: 3, img: 'assets/fruits/blueberry.png', stat: '' },
+      { value: 3, img: 'assets/fruits/blueberry.png', stat: '' },
+      { value: 4, img: 'assets/fruits/cherry.png', stat: '' },
+      { value: 4, img: 'assets/fruits/cherry.png', stat: '' },
+      { value: 5, img: 'assets/fruits/orange.png', stat: '' },
+      { value: 5, img: 'assets/fruits/orange.png', stat: '' },
+      { value: 6, img: 'assets/fruits/orange2.png', stat: '' },
+      { value: 6, img: 'assets/fruits/orange2.png', stat: '' },
+      { value: 7, img: 'assets/fruits/pineapple.png', stat: '' },
+      { value: 7, img: 'assets/fruits/pineapple.png', stat: '' },
+      { value: 8, img: 'assets/fruits/pomegranate.png', stat: '' },
+      { value: 8, img: 'assets/fruits/pomegranate.png', stat: '' },
+    ].sort(() => Math.random() - 0.5)
   );
 
   const [openCards, setOpenCards] = useState([]); // Открытые карточки
@@ -30,13 +31,13 @@ function Board() {
 
   const handleClick = (index) => {
     if (disabled || items[index].stat || openCards.includes(index)) return;
-  
+
     const newOpenCards = [...openCards, index];
     setOpenCards(newOpenCards);
-  
+
     if (newOpenCards.length === 2) {
       setDisabled(true);
-  
+
       const [firstIndex, secondIndex] = newOpenCards;
       if (items[firstIndex].value === items[secondIndex].value) {
         const updatedItems = items.map((item, i) =>
@@ -55,13 +56,9 @@ function Board() {
   };
 
   useEffect(() => {
-   
-
     if (items.every((item) => item.stat === 'matched')) {
       setGameOver(true);
-      
     }
-    
   }, [items]);
 
   const restartGame = () => {
@@ -74,8 +71,8 @@ function Board() {
   };
 
   return gameOver ? (
-    <div className="text-center text-green-500 text-[26px]">
-      <p >Game Over!</p>
+    <div className="text-center text-green-500 text-2xl">
+      <p>Game Over!</p>
       <button
         onClick={restartGame}
         className="mt-4 px-4 py-2 bg-blue-500 text-white rounded-lg shadow-lg"
@@ -84,8 +81,7 @@ function Board() {
       </button>
     </div>
   ) : (
-    <div className=" grid grid-cols-2 gap-4  tablet:grid-cols-4 desktop:grid-cols-4
-    w-full ">
+    <div className="grid grid-cols-4 gap-4 w-full justify-center mt-6">
       {items.map((item, index) => (
         <Card
           key={v4()}
