@@ -26,5 +26,4 @@ Then open http://localhost:5173/cards-game/ in your browser
 
 В папке components храним все основные и переиспользуемые компоненты вместе с module.css для стилизации.
 Внутри папки public/assets хранятся все используемые икноки и изображения.
-=======
 
