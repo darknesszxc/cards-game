@@ -2,6 +2,8 @@
 
 ## To install the project use the following code.
 
+## Deploy gh-pages: https://darknesszxc.github.io/cards-game/
+
 Make sure you have git and Node installed.
 
 ```shell
